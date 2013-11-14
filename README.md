@@ -1,5 +1,4 @@
 # SlidingMenu
----
 
 
 ##What Does it Support ?
@@ -9,11 +8,10 @@
 *	Devices: iPhone, iPad
 
 
-<br/>
 
 ##How to use SlidingMenu
 
-<br/>
+
 Include the following two files in your project:
 
 ```
@@ -35,10 +33,10 @@ I recommend you to instantiate this object as your rootViewController, in the fo
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 ```
 
-<br/>
+
 ##Opening and Closing The Slider
 
-<br/>
+
 You are able to open/close the slider yourself calling
 
 ```
@@ -46,21 +44,29 @@ You are able to open/close the slider yourself calling
 - (void)closeSlider
 ```
 
-<br/>
+
 ## Options
----
+
 
 ### Locked the slider
-<br/>
+
 You can enable/disable as opening or closing calling this function:
 
 ```
--(void)isLocked:(BOOL)value
+- (void)isLocked:(BOOL)value
+```
+
+### Allow/block user to slide manually
+
+You can disable manual open/close with:
+
+```
+- (void)isAllowManually:(BOOL)value
 ```
 
 ### Set Visible part of Main view
 
-<br/>
+
 You can set the width of the visible part of the main view that will be seen when the slider will be opened
 
 ```
@@ -69,13 +75,13 @@ You can set the width of the visible part of the main view that will be seen whe
 
 ### Moving Vertically the Main view
 
-<br/>
+
 If you would also move the slider vertically, you can change it default value (0 pts) using:
 
 ```
 - (void)set_vertical_opening:(float)value
 ```
-<br/>
+
 ##Developed By
 
 * Stefan Lage

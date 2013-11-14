@@ -49,6 +49,8 @@
     BOOL isOpen;
     // Bool to lock the slider
     BOOL isLocked;
+    // Bool to allow user to slide manually
+    BOOL isAllowManually;
 }
 
 // The front view controller
@@ -67,6 +69,8 @@
 // Close the slider
 - (void)closeSlider;
 // Lock / Unlock slider
--(void)isLocked:(BOOL)value;
+- (void)isLocked:(BOOL)value;
+// Allow/block user to slide manually
+- (void)isAllowManually:(BOOL)value;
 
 @end

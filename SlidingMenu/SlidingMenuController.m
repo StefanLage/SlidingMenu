@@ -58,6 +58,8 @@
         _backViewController = backView;
         // Set middle of the main frame
         midPositionX = mainView.view.frame.size.width/2;
+        // By default allow user to slide manually
+        [self isAllowManually:YES];
         // Add main and back views
         [self.view addSubview:_mainViewController.view];
         [self.view addSubview:_backViewController.view];
@@ -96,8 +98,13 @@
 }
 
 // Lock / Unlock slider
--(void)isLocked:(BOOL)value{
+- (void)isLocked:(BOOL)value{
     isLocked = value;
+}
+
+// Allow/block user to slide manually
+- (void)isAllowManually:(BOOL)value{
+    isAllowManually = value;
 }
 
 #pragma Touches
@@ -119,7 +126,7 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     // If slider is not locked we can move it
-    if(!isLocked){
+    if(!isLocked && isAllowManually){
         // get the touch
         UITouch *touch = [touches anyObject];
         // Do we need to move the mainView
@@ -132,7 +139,7 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     // If slider is not locked we can move it
-    if(!isLocked){
+    if(!isLocked && isAllowManually){
         // get the touch
         UITouch *touch = [touches anyObject];
         if ([touch view] == self.mainViewController.view)
