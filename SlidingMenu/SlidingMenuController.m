@@ -130,7 +130,8 @@
         // get the touch
         UITouch *touch = [touches anyObject];
         // Do we need to move the mainView
-        if ([touch view] == self.mainViewController.view)
+        if ([touch view] == self.mainViewController.view
+            || [self checkViewTouched:self.mainViewController.view child:[touch view]])
             [self openSmoothly:touch];
         else
             isOpen = false;
@@ -142,12 +143,29 @@
     if(!isLocked && isAllowManually){
         // get the touch
         UITouch *touch = [touches anyObject];
-        if ([touch view] == self.mainViewController.view)
+        if ([touch view] == self.mainViewController.view
+            || [self checkViewTouched:self.mainViewController.view child:[touch view]])
             [self openWithAnimation];
         else
             // Be sure to close the slider
             [self closeWithAnimation];
     }
+}
+
+// Function that willcheck if a ParentView contain the child or not
+// If not we check parent views in deeper
+-(BOOL)checkViewTouched:(UIView*)parent child:(UIView*)child{
+    // Be sure that parent contains at least 1 childview
+    if([[parent subviews] count] > 0){
+        // Does the parent contains view child ?
+        if ([[parent subviews] containsObject:child])
+            return YES;
+        // Else we check recursivly in each child if they do
+        for(UIView* view in [parent subviews])
+            return [self checkViewTouched:parent child:view];
+    }
+    // Default value
+    return NO;
 }
 
 #pragma Open
